@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sign Up</title>
+</head>
+<body>
+
+	<form method="post" action="/signup">
+	
+	<h1>Create new account:</h1>
+	<input type="email" name="email" placeholder="email">
+	<input type="password" name="password" placeholder="password">
+	<input type="text" name="firstName" placeholder="first name">
+	<input type="text" name="lastName" placeholder="last name">
+	
+	<br>
+	<button>Create</button>
+	<input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+	
+	</form>
+</body>
+</html>
