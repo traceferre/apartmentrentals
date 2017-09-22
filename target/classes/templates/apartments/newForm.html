@@ -5,17 +5,18 @@
 <title>Add apartment</title>
 </head>
 <body>
+{{>/common/_navigation}}
 
 	<form method="post" action="/apartments">
 	
 	<h1>Create new listing:</h1>
 	<input type="number" name="rent" placeholder="Monthly rent">
 	<br>
-	<input type="number" name="numberOfBedrooms" placeholder="Number of bedrooms">
+	<input type="number" name="number_of_bedrooms" placeholder="Number of bedrooms">
 	<br>
-	<input type="number" name="numberOfBathrooms" step="0.5" placeholder="Number of bathrooms">
+	<input type="number" name="number_of_bathrooms" step="0.5" placeholder="Number of bathrooms">
 	<br>
-	<input type="number" name="squareFootage" placeholder="Square footage">
+	<input type="number" name="square_footage" placeholder="Square footage">
 	<br>
 	<input type="text" name="street" placeholder="Street address">
 	<br>
@@ -23,10 +24,10 @@
 	<br>
 	<input type="text" name="state" placeholder="State">
 	<br>
-	<input type="text" name="zip" placeholder="Zip code">
+	<input type="text" name="zip_code" placeholder="Zip code">
 	<br>
-	<button>Create</button>
-	<input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+	<button>Add listing</button>
+	<input type="hidden" name="token" value="{{ csrf }}">
 	
 	</form>
 </body>

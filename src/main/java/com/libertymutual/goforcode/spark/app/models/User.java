@@ -45,4 +45,8 @@ public class User extends Model {
 		set("last_name", lastName);
 	}
 	
+	public Long getId() {
+		return getLong("id");
+	}
+	
 }

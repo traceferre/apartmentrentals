@@ -5,18 +5,19 @@
 <title>Sign Up</title>
 </head>
 <body>
+{{>/common/_navigation}}
 
-	<form method="post" action="/signup">
+	<form method="post" action="/users">
 	
 	<h1>Create new account:</h1>
 	<input type="email" name="email" placeholder="email">
 	<input type="password" name="password" placeholder="password">
-	<input type="text" name="firstName" placeholder="first name">
-	<input type="text" name="lastName" placeholder="last name">
+	<input type="text" name="first_name" placeholder="first name">
+	<input type="text" name="last_name" placeholder="last name">
 	
 	<br>
-	<button>Create</button>
-	<input type="hidden" name="{{ _csrf.parameterName }}" value="{{ _csrf.token }}">
+	<button>Sign up</button>
+	<input type="hidden" name="token" value="{{ csrf }}">
 	
 	</form>
 </body>

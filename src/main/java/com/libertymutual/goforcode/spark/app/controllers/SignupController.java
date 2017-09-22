@@ -16,14 +16,18 @@ import spark.Route;
 public class SignupController {
 
 	public static final Route newForm = (Request req, Response rep) -> {
-		return MustacheRenderer.getInstance().render("signup/signup.html", null);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("currentUser", req.session().attribute("currentUser"));
+		model.put("noUser", req.session().attribute("currentUser") == null);
+		model.put("csrf", req.session().attribute("csrf"));
+		return MustacheRenderer.getInstance().render("signup/signup.html", model);
 	};
 	
 	public static final Route create = (Request req, Response rep) -> {
 		String email = req.queryParams("email");
 		String password = req.queryParams("password");
-		String firstName = req.queryParams("firstName");
-		String lastName = req.queryParams("lastName");
+		String firstName = req.queryParams("first_name");
+		String lastName = req.queryParams("last_name");
 		
 		password = BCrypt.hashpw(password, BCrypt.gensalt());
 		
@@ -34,9 +38,10 @@ public class SignupController {
 				return "";
 			}
 			user = new User(email, password, firstName, lastName);
+			req.session().attribute("currentUser", user);
 			user.saveIt();
 		}			
-		rep.redirect("/login");
+		rep.redirect("/");
 		return "";
 	};
 

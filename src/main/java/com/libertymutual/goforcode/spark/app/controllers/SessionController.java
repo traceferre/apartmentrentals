@@ -19,6 +19,9 @@ public class SessionController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("email", req.queryParams("email"));
 		model.put("returnPath", req.queryParams("returnPath"));
+		model.put("currentUser", req.session().attribute("currentUser"));
+		model.put("noUser", req.session().attribute("currentUser") == null);
+		model.put("csrf", req.session().attribute("csrf"));
 		return MustacheRenderer.getInstance().render("login/login.html", model);
 	};
 	

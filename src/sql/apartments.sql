@@ -9,5 +9,7 @@ CREATE TABLE apartments (
 	  street VARCHAR(255) NOT NULL,
 	  city VARCHAR(255) NOT NULL,
 	  state VARCHAR(255) NOT NULL,
-	  zip VARCHAR(30) NOT NULL
+	  zip_code VARCHAR(30) NOT NULL,
+	  user_id BIGINT,
+	  is_active BOOLEAN NOT NULL default false
 );

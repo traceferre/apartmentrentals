@@ -15,7 +15,7 @@ public class Apartment extends Model{
 		setStreet(street);
 		setCity(city);
 		setState(state);
-		setZip(zip);
+		setZipCode(zip);
 	}
 
 	public int getNumberOfBedrooms() {
@@ -66,12 +66,12 @@ public class Apartment extends Model{
 		set("state", state);
 	}
 
-	public String getZip() {
-		return getString("zip");
+	public String getZipCode() {
+		return getString("zip_code");
 	}
 
-	public void setZip(String zip) {
-		set("zip", zip);
+	public void setZipCode(String zip) {
+		set("zip_code", zip);
 	}
 
 	public int getRent() {
@@ -80,5 +80,21 @@ public class Apartment extends Model{
 
 	public void setRent(int rent) {
 		set("rent", rent);
+	}
+	
+	public boolean getIsActive() {
+		return getBoolean("is_active");
+	}
+	
+	public void setIsActive(boolean isActive) {
+		set("is_active", isActive);
+	}
+	
+	public Long getUserId() {
+		return getLong("user_id");
+	}
+	
+	public Long getId() {
+		return getLong("id");
 	}
 }

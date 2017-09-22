@@ -1,0 +1,16 @@
+<!-- This is _navigation.html -->
+<div>
+  <a href="/">Home</a>
+  {{#currentUser}}
+    <form action="/logout" method="post">
+      <a href="/apartments/mine">Your listings</a>
+      <a href="/apartments/new">Add a listing</a>
+      <button>Logout</button>
+      <input type="hidden" name="token" value="{{ csrf }}">
+    </form>
+  {{/currentUser}}
+  {{#noUser}}
+    <a href="/login">Login</a>
+    <a href="/users/new">Sign up</a>
+  {{/noUser}}
+</div>

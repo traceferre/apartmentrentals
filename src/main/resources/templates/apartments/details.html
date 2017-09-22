@@ -5,8 +5,35 @@
 <title>Apartments</title>
 </head>
 <body>
+{{>/common/_navigation}}
 
 <h1>Only ${{ apartment.rent }}</h1>
+
+	{{#owner}}
+		{{#active}}
+			<form action="/apartments/{{apartment.id}}/deactivations" method="post">
+		      <button>Deactivate listing</button>
+		      <input type="hidden" name="token" value="{{ csrf }}">
+		    </form>
+	    {{/active}}
+	    {{#inactive}}
+			<form action="/apartments/{{apartment.id}}/activations" method="post">
+		      <button>Activate listing</button>
+		      <input type="hidden" name="token" value="{{ csrf }}">
+		    </form>
+	    {{/inactive}}
+	{{/owner}}
+	
+	{{#unliked}}
+		<form action="/apartments/{{apartment.id}}/like" method="post">
+		      <button>Like this apartment</button>
+		      <input type="hidden" name="token" value="{{ csrf }}">
+		</form>
+	{{/unliked}}
+	
+	{{#noUser}}
+		<a href="/login?returnPath=/apartments/{{apartment.id}}">Login to LIKE this apartment</a>
+	{{/noUser}}
 <p>
   {{ apartment.street }}<br>
   {{ apartment.city }}, {{ apartment.state }} {{ apartment.zipCode }}
@@ -20,5 +47,13 @@
   <dd>{{ apartment.squareFootage }}</dd>
 </dl>
 
+	{{#owner}}
+	<h3>People who have liked this apartment:</h3>
+	        <ul>
+	        {{#userNames}}
+	        	<li> {{ . }}</li>
+	        {{/userNames}}
+	        </ul>
+	{{/owner}}
 </body>
 </html>
