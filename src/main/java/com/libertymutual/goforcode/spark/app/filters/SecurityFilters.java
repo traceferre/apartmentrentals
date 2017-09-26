@@ -39,7 +39,7 @@ public class SecurityFilters {
 		try (AutoCloseableDb db = new AutoCloseableDb()) {
 			Apartment apartment = Apartment.findById(Integer.parseInt((req.params("id"))));
 			User user = req.session().attribute("currentUser");
-			if (user.getId() == apartment.getUserId()) {
+			if (!user.getId().equals(apartment.getUserId())) {
 				res.redirect("/");
 				halt();
 			}
